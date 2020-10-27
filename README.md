@@ -18,7 +18,7 @@ Q3 - Select all orders that the Ship City is Rio de Janeiro or Reims?
 
 Query: SELECT * FROM Orders WHERE ShipCity = 'Rio de Janeiro' OR ShipCity = 'Reims';
 
-Response: ![Results](/Pictures/sql_assignment_pic1)
+Response:
 
 Q4 - Select all of the entries where the Company name has a z or a Z in the table of Customers
 
