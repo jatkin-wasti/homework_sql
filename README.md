@@ -24,7 +24,7 @@ Q4 - Select all of the entries where the Company name has a z or a Z in the tabl
 
 Query: SELECT * FROM Customers WHERE CompanyName LIKE '%z%';
 
-Response: ![Third image](/sql_assignmen_pic3.png)
+Response: ![Third image](/sql_assignment_pic3.png)
 
 Q5 - We need to update all of our FAX information! This Day and age it is a must! 😅😅😅 Find me the Name of All of the companies that we do not have their FAX numbers! I would also like to know with whom I need to speak with, their contact numbers and what city they are base in.
 
