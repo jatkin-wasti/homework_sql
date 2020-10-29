@@ -5,7 +5,7 @@
 Q1 - How many orders in NWDB?
 
 Query: 
-``
+```
 SELECT Count(*) OrderID FROM Orders;
 ```
 Response: 830
@@ -15,7 +15,7 @@ Q2 - How many order that the Ship City is Rio de Janeiro?
 Query: 
 ```
 SELECT Count(*) FROM Orders WHERE ShipCity = 'Rio de Janeiro';
-``
+```
 Response: 34
 
 Q3 - Select all orders that the Ship City is Rio de Janeiro or Reims?
