@@ -64,11 +64,14 @@ Response:
 
 Q8 - OMG What are you? Some kind of SQL Guardian Angel? THIS IS AMAZING! May God pay you handsomely 😸 because I have no cash on me!.. I do have one more request. I need to know more about these these Paris client. Can you find out which ones their deliveries took longer than 10 days? Display the Business/client name, contact name, all their contact details (don't forget the fax!), as well as the number of deliveries that where overdue! Just add a column named: 'Number overdue orders'! simple, thank you!
 
-Query: SELECT OrderDate, ShippedDate, DATEDIFF(d, OrderDate, ShippedDate) AS "Length of shipping",
-CASE WHEN DATEDIFF(d, OrderDate, ShippedDate) > 10 THEN 1
+Query:
+```
+SELECT Customers.ContactName, Customers.CompanyName, Customers.Phone, Customers.Fax, Customers.PostalCode, DATEDIFF(d, OrderDate, ShippedDate) AS "Length of shipping",
+SUM(CASE WHEN DATEDIFF(d, OrderDate, ShippedDate) > 10 THEN 1
 ELSE 0
-END AS "Number of Overdue Deliveries"
-FROM Orders
-WHERE ShipCity = 'Paris';
-
+END) AS "Number of overdue deliveries"
+FROM Orders INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].[OrderID] INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
+WHERE ShipCity = 'Paris'
+GROUP BY Customers.ContactName, Customers.CompanyName, Customers.Phone, Customers.Fax, Customers.PostalCode, Orders.ShippedDate, Orders.OrderDate;
+```
 Response:
