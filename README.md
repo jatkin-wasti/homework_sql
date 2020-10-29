@@ -55,7 +55,7 @@ Q7 - WAIT! Where are you going? (...) These clients are hard to sell too! We nee
 
 Query: 
 ```
-SELECT ContactName, Quantity
+SELECT TOP 5 ContactName, Quantity
 FROM Orders INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].[OrderID]
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 WHERE Orders.ShipCity = 'Paris'
