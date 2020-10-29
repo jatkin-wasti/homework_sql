@@ -55,11 +55,14 @@ Q7 - WAIT! Where are you going? (...) These clients are hard to sell too! We nee
 
 Query: 
 ```
-SELECT TOP 5 ContactName, Quantity
-FROM Orders INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].[OrderID]
+SELECT Customers.ContactName, Customers.CompanyName, Customers.Phone, Customers.Fax, Customers.PostalCode, DATEDIFF(d, OrderDate, ShippedDate) AS "Length of shipping",
+SUM(CASE WHEN DATEDIFF(d, OrderDate, ShippedDate) > 10 THEN 1
+ELSE 0
+END) AS "Number of overdue deliveries"
+FROM Orders
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
-WHERE Orders.ShipCity = 'Paris'
-ORDER BY Quantity DESC;
+WHERE ShipCity = 'Paris'
+GROUP BY Customers.ContactName, Customers.CompanyName, Customers.Phone, Customers.Fax, Customers.PostalCode, Orders.ShippedDate, Orders.OrderDate;
 ```
 Response:
 
