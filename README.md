@@ -41,12 +41,20 @@ Response: ![Sixth image](/sql_assignment_pic6.png)
 
 Q7 - WAIT! Where are you going? (...) These clients are hard to sell too! We need more intel.. Can you find out, from these clients from Paris, whom orders the most by quantity? Who are our top 5 clients?
 
-Query:
+Query: SELECT Orders.EmployeeID, SUM(Quantity) AS 'Total Orders'
+    FROM [Order Details] INNER JOIN Orders ON [Order Details].OrderID = Orders.OrderID
+    WHERE Orders.ShipCity = 'Paris'
+    GROUP BY Orders.EmployeeID ORDER BY 'Total Orders' DESC;
 
 Response:
 
 Q8 - OMG What are you? Some kind of SQL Guardian Angel? THIS IS AMAZING! May God pay you handsomely 😸 because I have no cash on me!.. I do have one more request. I need to know more about these these Paris client. Can you find out which ones their deliveries took longer than 10 days? Display the Business/client name, contact name, all their contact details (don't forget the fax!), as well as the number of deliveries that where overdue! Just add a column named: 'Number overdue orders'! simple, thank you!
 
-Query:
+Query: SELECT OrderDate, ShippedDate, DATEDIFF(d, OrderDate, ShippedDate) AS "Length of shipping",
+CASE WHEN DATEDIFF(d, OrderDate, ShippedDate) > 10 THEN 1
+ELSE 0
+END AS "Number of Overdue Deliveries"
+FROM Orders
+WHERE ShipCity = 'Paris';
 
 Response:
