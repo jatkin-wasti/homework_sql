@@ -54,7 +54,8 @@ Response: ![Sixth image](/sql_assignment_pic6.png)
 Q7 - WAIT! Where are you going? (...) These clients are hard to sell too! We need more intel.. Can you find out, from these clients from Paris, whom orders the most by quantity? Who are our top 5 clients?
 
 Query: 
-```SELECT ContactName, Quantity
+```
+SELECT ContactName, Quantity
 FROM Orders INNER JOIN [Order Details] ON Orders.OrderID = [Order Details].[OrderID]
 INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID
 WHERE Orders.ShipCity = 'Paris'
